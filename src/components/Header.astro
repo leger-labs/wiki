@@ -1,7 +1,6 @@
 ---
 import type { Props } from '@astrojs/starlight/props';
 import Search from '@astrojs/starlight/components/Search.astro';
-import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
 ---
 
 <header>
@@ -18,13 +17,108 @@ import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
     </div>
     
     <div class="header-actions">
-      <ThemeSelect {...Astro.props} />
+      <theme-button class='my-auto'>
+        <button
+          class='theme-toggle rounded-full border-none cursor-pointer px-1 py-0 flex items-center bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors'
+          aria-label='Toggle Theme'
+        >
+          <span class='theme-option auto hidden'>
+            <span class='mx-1.5 my-1'>🌓</span>
+          </span>
+          <span class='theme-option light hidden'>
+            <span class='mx-1.5 my-1'>☀️</span>
+          </span>
+          <span class='theme-option dark hidden'>
+            <span class='mx-1.5 my-1'>🌙</span>
+          </span>
+        </button>
+      </theme-button>
       <a href="https://app.leger.run" class="login-button">
         Login
       </a>
     </div>
   </div>
 </header>
+
+<script>
+  type Theme = 'auto' | 'dark' | 'light';
+  type ThemeChangeEvent = CustomEvent<{ theme: Theme }>;
+
+  const theme = (() => {
+    const getTheme = (): Theme => {
+      if (typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme')) {
+        return localStorage.getItem('starlight-theme') as Theme;
+      }
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+      return 'light';
+    };
+
+    const setTheme = (newTheme: Theme) => {
+      const root = document.documentElement;
+      const isDark = 
+        newTheme === 'dark' || 
+        (newTheme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      
+      root.setAttribute('data-theme', isDark ? 'dark' : 'light');
+      localStorage.setItem('starlight-theme', newTheme);
+      
+      window.dispatchEvent(new CustomEvent('theme-changed', {
+        detail: { theme: newTheme }
+      }) as ThemeChangeEvent);
+    };
+
+    return { getTheme, setTheme };
+  })();
+
+  class ThemeButton extends HTMLElement {
+    constructor() {
+      super();
+      const button = this.querySelector('.theme-toggle');
+      if (!button) return;
+
+      button.addEventListener('click', () => {
+        const currentTheme = theme.getTheme();
+        let newTheme: Theme;
+        if (currentTheme === 'auto') newTheme = 'light';
+        else if (currentTheme === 'light') newTheme = 'dark';
+        else newTheme = 'auto';
+
+        theme.setTheme(newTheme);
+        this.updateSelectedTheme(newTheme);
+      });
+
+      window.addEventListener('theme-changed', (event: Event) => {
+        const themeEvent = event as ThemeChangeEvent;
+        this.updateSelectedTheme(themeEvent.detail.theme);
+      });
+
+      this.updateSelectedTheme(theme.getTheme());
+    }
+
+    updateSelectedTheme(newTheme: Theme) {
+      const button = this.querySelector('.theme-toggle') as HTMLButtonElement;
+      if (!button) return;
+      
+      button.classList.remove('auto-theme', 'light-theme', 'dark-theme');
+      button.classList.add(`${newTheme}-theme`);
+
+      // Update visibility of theme options
+      const options = this.querySelectorAll('.theme-option');
+      options.forEach(option => {
+        option.classList.add('hidden');
+        option.classList.remove('flex');
+      });
+      const activeOption = this.querySelector(`.theme-option.${newTheme}`);
+      if (activeOption) {
+        activeOption.classList.remove('hidden');
+        activeOption.classList.add('flex');
+      }
+    }
+  }
+  customElements.define('theme-button', ThemeButton);
+</script>
 
 <style>
   header {
@@ -33,6 +127,8 @@ import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
     z-index: 50;
     background-color: var(--sl-color-bg);
     border-bottom: 1px solid var(--sl-color-gray-5);
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .header-container {
@@ -42,6 +138,8 @@ import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
     padding: 0.75rem 1.5rem;
     max-width: 100rem;
     margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .site-title {
@@ -95,6 +193,12 @@ import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
   :global([data-theme="light"]) .login-button {
     background-color: var(--sl-color-black);
     color: var(--sl-color-white);
+  }
+
+  .theme-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   @media (max-width: 50rem) {
