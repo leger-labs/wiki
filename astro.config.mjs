@@ -12,8 +12,7 @@ export default defineConfig({
     starlight({
       title: "Leger",
       plugins: [],
-      editLink: false,
-      sidebar: false,
+      sidebar: [],
       social: {
         github: "https://github.com/leger-labs",
         linkedin: "https://linkedin.com/company/leger-labs",
