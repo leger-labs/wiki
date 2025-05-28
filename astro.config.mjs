@@ -6,82 +6,23 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
-import fs from "fs";
-
-var SITE_URL;
-fs.readFile("./public/CNAME", "utf-8", (err, data) => {
-  if (err) {
-    return;
-  }
-
-  SITE_URL = data.trim();
-});
-const BASE_URL = "";
 
 // https://astro.build/config
 export default defineConfig({
-  base: BASE_URL,
-  site: SITE_URL,
+  site: "https://leger.run",
   trailingSlash: "ignore",
   markdown: {
-    remarkPlugins: [prefixLinks({ base: BASE_URL + "/" })],
+    remarkPlugins: [prefixLinks({ base: "/" })],
   },
   integrations: [
     starlight({
-      title: "Fabric",
-      plugins: [
-        // starlightVersions({
-        //   versions: [{ slug: "0.0.1", label: "v0.0.1" }],
-        // }),
-        starlightSidebarTopics([
-          {
-            label: "Guides",
-            link: "/getting-started/introduction/",
-            icon: "open-book",
-            items: [
-              {
-                label: "Getting Started",
-                autogenerate: { directory: "getting-started" },
-              },
-              {
-                label: "Guide",
-                autogenerate: { directory: "guide" },
-              },
-              {
-                label: "Community Snippets",
-                autogenerate: { directory: "snippets" },
-              },
-              {
-                label: "Contributing",
-                autogenerate: { directory: "contributing" },
-                collapsed: true,
-              },
-            ],
-          },
-          {
-            label: "API Reference",
-            link: "/api/fabric/",
-            icon: "information",
-            items: [
-              {
-                label: "Parent Package",
-                autogenerate: { directory: "api" },
-              },
-            ],
-          },
-        ]),
-      ],
-      editLink: {
-        baseUrl: "https://github.com/Fabric-Development/fabric-wiki/edit/",
-      },
-      logo: {
-        dark: "./src/assets/logo-dark.svg",
-        light: "./src/assets/logo-light.svg",
-        replacesTitle: false,
-      },
+      title: "Leger",
+      plugins: [],
+      editLink: false,
+      sidebar: false,
       social: {
-        github: "https://github.com/Fabric-Development/fabric",
-        discord: "https://discord.gg/3sDbYc9SZP",
+        github: "https://github.com/leger-labs",
+        linkedin: "https://linkedin.com/company/leger-labs",
       },
       customCss: [
         "./src/tailwind.css",
@@ -102,6 +43,10 @@ export default defineConfig({
         "@fontsource/readex-pro/600.css",
         "@fontsource/readex-pro/700.css",
       ],
+      components: {
+        Header: './src/components/Header.astro',
+        Footer: './src/components/Footer.astro',
+      },
     }),
     tailwind({ applyBaseStyles: false }),
     react({
