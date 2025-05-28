@@ -1,0 +1,85 @@
+---
+import { Icon } from "@astrojs/starlight/components";
+
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="document-container">
+  <div class="document-content">
+    <h1 class="document-title">{title}</h1>
+    <div class="document-body">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style>
+  .document-container {
+    min-height: calc(100vh - 12rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .document-content {
+    max-width: 48rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .document-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 3rem;
+    color: var(--sl-color-white);
+  }
+
+  .document-body {
+    line-height: 1.7;
+    color: var(--sl-color-gray-2);
+  }
+
+  .document-body :global(h2) {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--sl-color-white);
+  }
+
+  .document-body :global(h3) {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--sl-color-white);
+  }
+
+  .document-body :global(p) {
+    margin-bottom: 1.5rem;
+  }
+
+  .document-body :global(a) {
+    color: var(--sl-color-accent);
+    text-decoration: underline;
+  }
+
+  .document-body :global(a:hover) {
+    text-decoration: none;
+  }
+
+  .document-body :global(ul),
+  .document-body :global(ol) {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+  }
+
+  .document-body :global(li) {
+    margin-bottom: 0.5rem;
+  }
+</style>

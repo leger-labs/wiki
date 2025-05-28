@@ -1,0 +1,141 @@
+---
+import { Icon } from "@astrojs/starlight/components";
+
+export interface Props {
+  title: string;
+  date?: string;
+}
+
+const { title, date } = Astro.props;
+---
+
+<article class="article-container">
+  <div class="article-content">
+    <header class="article-header">
+      <h1 class="article-title">{title}</h1>
+      {date && <time class="article-date">{date}</time>}
+    </header>
+    <div class="article-body">
+      <slot />
+    </div>
+  </div>
+</article>
+
+<style>
+  .article-container {
+    min-height: calc(100vh - 12rem);
+    display: flex;
+    justify-content: center;
+    padding: 4rem 2rem;
+  }
+
+  .article-content {
+    max-width: 42rem;
+    width: 100%;
+  }
+
+  .article-header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--sl-color-gray-5);
+  }
+
+  .article-title {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    color: var(--sl-color-white);
+    line-height: 1.2;
+  }
+
+  .article-date {
+    color: var(--sl-color-gray-3);
+    font-size: 1.125rem;
+  }
+
+  .article-body {
+    line-height: 1.8;
+    color: var(--sl-color-gray-1);
+  }
+
+  .article-body :global(h2) {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--sl-color-white);
+  }
+
+  .article-body :global(h3) {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    color: var(--sl-color-white);
+  }
+
+  .article-body :global(p) {
+    margin-bottom: 1.75rem;
+  }
+
+  .article-body :global(a) {
+    color: var(--sl-color-accent);
+    text-decoration: underline;
+  }
+
+  .article-body :global(a:hover) {
+    text-decoration: none;
+  }
+
+  .article-body :global(ul),
+  .article-body :global(ol) {
+    margin-bottom: 1.75rem;
+    padding-left: 2rem;
+  }
+
+  .article-body :global(li) {
+    margin-bottom: 0.75rem;
+  }
+
+  .article-body :global(blockquote) {
+    border-left: 4px solid var(--sl-color-gray-5);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--sl-color-gray-3);
+  }
+
+  .article-body :global(code) {
+    background: var(--sl-color-gray-6);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+
+  .article-body :global(pre) {
+    background: var(--sl-color-gray-6);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin-bottom: 1.75rem;
+  }
+
+  .article-body :global(pre code) {
+    background: transparent;
+    padding: 0;
+  }
+
+  @media (max-width: 50rem) {
+    .article-title {
+      font-size: 2.25rem;
+    }
+    
+    .article-body :global(h2) {
+      font-size: 1.75rem;
+    }
+    
+    .article-body :global(h3) {
+      font-size: 1.375rem;
+    }
+  }
+</style>

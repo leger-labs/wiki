@@ -27,29 +27,39 @@ body {
 	--sl-color-black: #000000;
 }
 
-/* Light mode colors. */
+/* Light mode colors - Updated for black text */
 :root[data-theme="light"] {
 	--bg-glare-hsl: 0, 0%, 0%;
 	--sl-color-accent-low: #f5f5f5;
 	--sl-color-accent: #000000;
 	--sl-color-accent-high: #1a1a1a;
 	--sl-color-white: #000000;
-	--sl-color-gray-1: #111111;
-	--sl-color-gray-2: #3d3d3d;
-	--sl-color-gray-3: #747474;
-	--sl-color-gray-4: #a9a9a9;
+	--sl-color-gray-1: #333333;
+	--sl-color-gray-2: #555555;
+	--sl-color-gray-3: #777777;
+	--sl-color-gray-4: #999999;
 	--sl-color-gray-5: #d0d0d0;
 	--sl-color-gray-6: #eaeaea;
 	--sl-color-black: #ffffff;
 }
 
-/* 
-[data-has-hero] .page {
-	background:
-		linear-gradient(215deg, var(--overlay-white), transparent 40%),
-		radial-gradient(var(--overlay-white), transparent 40%) no-repeat -60vw -40vh / 105vw 200vh,
-		radial-gradient(var(--overlay-white), transparent 65%) no-repeat 50% calc(100% + 20rem) / 60rem 30rem;
-} */
+/* Fix for landing page text in light mode */
+:root[data-theme="light"] [data-has-hero] {
+	color: var(--sl-color-white);
+}
+
+:root[data-theme="light"] [data-has-hero] h1,
+:root[data-theme="light"] [data-has-hero] h2,
+:root[data-theme="light"] [data-has-hero] h3,
+:root[data-theme="light"] [data-has-hero] h4,
+:root[data-theme="light"] [data-has-hero] h5,
+:root[data-theme="light"] [data-has-hero] h6 {
+	color: var(--sl-color-white);
+}
+
+:root[data-theme="light"] [data-has-hero] p {
+	color: var(--sl-color-gray-2);
+}
 
 [data-has-hero] header {
 	border-bottom: 1px solid transparent;
@@ -62,22 +72,14 @@ body {
 	filter: drop-shadow(0 0 8rem var(--overlay-white));
 }
 
-
-/* Adjust the header section */
+/* Remove logo styles since we're using emoji */
 .site-title {
-	gap: 0.4em;
+	gap: 0.5rem;
 }
 
 .site-title span {
 	color: var(--sl-color-white);
 	font-weight: 900;
-
-	/* Our logo's text is in all caps */
-	font-variant-caps: all-petite-caps;
-}
-
-.glare-wrapper {
-	margin: unset !important;
 }
 
 [data-has-hero] header {
@@ -88,7 +90,31 @@ body {
 	backdrop-filter: blur(28px);
 }
 
-/* I don't really like how starlight's default badges look like */
+/* Keep button styling from Fabric */
+.sl-link-button {
+	border-radius: 9999px;
+}
+
+/* LinkedIn icon support */
+.sl-flex .social-icons a[href*="linkedin"] svg {
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+/* Fix FeatureCard text in light mode */
+:root[data-theme="light"] .feature-card .card {
+	background: color-mix(in lab, var(--sl-color-black) 70%, transparent);
+}
+
+:root[data-theme="light"] .feature-card .title {
+	color: var(--sl-color-black);
+}
+
+:root[data-theme="light"] .feature-card .body {
+	color: var(--sl-color-gray-2);
+}
+
+/* Badge styling (keeping from original) */
 .sl-badge {
 	all: unset !important;
 	@apply font-semibold items-center inline-flex rounded-full px-2 py-1 text-xs border border-solid bg-accent-200 border-accent-900 dark:bg-accent-900 dark:border-accent-400 !important;
@@ -114,21 +140,11 @@ body {
 	@apply font-bold text-accent-800 dark:text-accent-200 bg-red-300 border-red-900 dark:bg-red-900 dark:border-red-400 !important;
 }
 
-@keyframes shine {
-	100% {
-		background-position: -140% 0;
-	}
+/* Hide default Starlight header and footer when using custom components */
+.header {
+	display: none;
 }
 
-.shine>* {
-	background-size: 200% 100% !important;
-	background-image: linear-gradient(-75deg,
-			transparent 0,
-			transparent 5%,
-			var(--sl-color-gray-4) 5%,
-			var(--sl-color-gray-4) 10%,
-			transparent 10%,
-			transparent 100%) !important;
-	background-clip: text !important;
-	animation: shine 2s ease-in-out infinite !important;
+.sl-container > footer {
+	display: none;
 }
