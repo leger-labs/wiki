@@ -103,15 +103,15 @@ body {
 
 /* Fix FeatureCard text in light mode */
 :root[data-theme="light"] .feature-card .card {
-	background: color-mix(in lab, var(--sl-color-black) 70%, transparent);
+	background: color-mix(in lab, var(--sl-color-black) 30%, transparent);
 }
 
 :root[data-theme="light"] .feature-card .title {
-	color: var(--sl-color-black);
+	color: var(--sl-color-black) !important;
 }
 
 :root[data-theme="light"] .feature-card .body {
-	color: var(--sl-color-gray-2);
+	color: var(--sl-color-gray-2) !important;
 }
 
 /* Badge styling (keeping from original) */
@@ -140,11 +140,11 @@ body {
 	@apply font-bold text-accent-800 dark:text-accent-200 bg-red-300 border-red-900 dark:bg-red-900 dark:border-red-400 !important;
 }
 
-/* Hide default Starlight header and footer when using custom components */
-.header {
-	display: none;
+/* Fix FeatureCard alignment issue */
+.feature-card {
+	position: relative;
 }
 
-.sl-container > footer {
-	display: none;
+.feature-card-inner {
+	display: block !important;
 }

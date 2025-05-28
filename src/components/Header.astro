@@ -1,4 +1,5 @@
 ---
+import type { Props } from '@astrojs/starlight/props';
 import Search from '@astrojs/starlight/components/Search.astro';
 import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
 ---
@@ -13,11 +14,11 @@ import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
     </div>
     
     <div class="header-center">
-      <Search />
+      <Search {...Astro.props} />
     </div>
     
     <div class="header-actions">
-      <ThemeSelect />
+      <ThemeSelect {...Astro.props} />
       <a href="https://app.leger.run" class="login-button">
         Login
       </a>
