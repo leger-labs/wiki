@@ -16,11 +16,7 @@ const { icon, title, body } = Astro.props;
   <Tilt
     client:idle
     className="feature-card-inner m-0 p-0 w-full h-full"
-    glareEnable={true}
-    glareMaxOpacity={0.8}
-    glareColor="var(--sl-color-gray-3)"
-    glarePosition="left"
-    glareBorderRadius="0.5rem"
+    glareEnable={false}
     gyroscope={true}
     transitionSpeed={2000}
     tiltMaxAngleX={6}
@@ -54,21 +50,6 @@ const { icon, title, body } = Astro.props;
   /* Fix Tilt wrapper alignment */
   .feature-card-inner {
     display: block !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-  
-  /* Target the Tilt component's wrapper divs */
-  .feature-card :global(.parallax-effect-glare-container) {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    pointer-events: none !important;
-  }
-  
-  .feature-card :global(.parallax-effect) {
     width: 100% !important;
     height: 100% !important;
   }
