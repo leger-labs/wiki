@@ -127,8 +127,13 @@ import Search from '@astrojs/starlight/components/Search.astro';
     z-index: 50;
     background-color: var(--sl-color-bg);
     border-bottom: 1px solid var(--sl-color-gray-5);
-    width: 100%;
-    box-sizing: border-box;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   .header-container {

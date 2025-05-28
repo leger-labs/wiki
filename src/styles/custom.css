@@ -7,6 +7,8 @@ body {
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
+	margin: 0;
+	padding: 0;
 }
 
 :root {
@@ -156,4 +158,62 @@ main {
 
 .theme-option.flex {
 	display: flex !important;
+}
+
+/* Specific fixes for header and footer positioning */
+body > header:first-of-type {
+	margin-top: 0 !important;
+	position: sticky;
+	top: 0;
+}
+
+body > footer:last-of-type {
+	margin-bottom: 0 !important;
+	margin-top: auto;
+}
+
+/* Remove any default margins from html and body that could cause spacing */
+html {
+	margin: 0;
+	padding: 0;
+}
+
+/* Fix for Starlight's page structure - ensure no unwanted top/bottom margins */
+.page {
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+
+/* Ensure the app/page wrapper doesn't add unwanted spacing */
+#starlight__sidebar,
+.main-frame {
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+
+/* Additional Starlight-specific fixes */
+.sl-theme-main,
+.sl-container,
+#starlight__main {
+	margin-top: 0 !important;
+	padding-top: 0 !important;
+}
+
+/* Ensure body starts at top */
+body {
+	padding-top: 0 !important;
+}
+
+/* Target any potential wrapper divs */
+body > div:first-child {
+	margin-top: 0 !important;
+	padding-top: 0 !important;
+}
+
+/* Ensure footer sticks to bottom */
+body > div:last-child,
+body > footer:last-child,
+footer:last-of-type {
+	margin-bottom: 0 !important;
+	padding-bottom: 0 !important;
 }

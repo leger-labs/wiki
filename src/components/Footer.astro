@@ -34,12 +34,19 @@ import { Icon } from "@astrojs/starlight/components";
     background-color: var(--sl-color-bg);
     border-top: 1px solid var(--sl-color-gray-5);
     margin-top: auto;
-    width: 100%;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-bottom: 0;
+    position: relative;
   }
 
   .footer-container {
     width: 100%;
     padding: 1.5rem 1.5rem;
+    margin: 0;
   }
 
   .footer-content {
