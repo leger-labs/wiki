@@ -3,39 +3,34 @@ import type { Props } from '@astrojs/starlight/props';
 import { Icon } from "@astrojs/starlight/components";
 ---
 
-<footer class="custom-footer">
-  <div class="footer-container">
-    <div class="footer-content">
-      <p class="copyright">© Leger Labs, Inc.</p>
-      
-      <nav class="footer-links">
-        <a href="/about">About</a>
-        <a href="/careers">Careers</a>
-        <a href="https://cal.com/leger" target="_blank" rel="noopener noreferrer">Schedule Call</a>
-        <a href="/changelog">Changelog</a>
-        <a href="/terms">Terms</a>
-        <a href="/privacy">Privacy</a>
-      </nav>
-      
-      <div class="social-links">
-        <a href="https://github.com/leger-labs" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <Icon name="github" />
-        </a>
-        <a href="https://linkedin.com/company/leger-labs" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <Icon name="linkedin" />
-        </a>
-      </div>
+<!-- Removed <footer> wrapper since Starlight should provide it -->
+<div class="footer-container">
+  <div class="footer-content">
+    <p class="copyright">© Leger Labs, Inc.</p>
+    
+    <nav class="footer-links">
+      <a href="/about">About</a>
+      <a href="/careers">Careers</a>
+      <a href="https://cal.com/leger" target="_blank" rel="noopener noreferrer">Schedule Call</a>
+      <a href="/changelog">Changelog</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+    </nav>
+    
+    <div class="social-links">
+      <a href="https://github.com/leger-labs" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <Icon name="github" />
+      </a>
+      <a href="https://linkedin.com/company/leger-labs" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <Icon name="linkedin" />
+      </a>
     </div>
   </div>
-</footer>
+</div>
 
 <style>
-  .custom-footer {
-    background-color: var(--sl-color-bg);
-    border-top: 1px solid var(--sl-color-gray-5);
-    margin-top: auto;
-  }
-
+  /* Removed .custom-footer styles since we don't have that wrapper anymore */
+  
   .footer-container {
     padding: 1.5rem 1.5rem;
   }

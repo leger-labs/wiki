@@ -7,6 +7,8 @@ body {
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
+	margin: 0;
+	padding: 0;
 }
 
 :root {
@@ -135,23 +137,55 @@ main {
 	flex: 1;
 }
 
-/* Simple approach: extend header and footer to full width using CSS */
-.custom-header {
-	width: 100vw;
-	position: relative;
-	left: 50%;
-	right: 50%;
-	margin-left: -50vw;
-	margin-right: -50vw;
+/* NEW FIXES FOR HEADER/FOOTER POSITIONING */
+
+/* Target Starlight's header wrapper directly */
+.header {
+	position: sticky;
+	top: 0;
+	z-index: 50;
+	background-color: var(--sl-color-bg);
+	border-bottom: 1px solid var(--sl-color-gray-5);
 }
 
-.custom-footer {
-	width: 100vw;
-	position: relative;
-	left: 50%;
-	right: 50%;
-	margin-left: -50vw;
-	margin-right: -50vw;
+/* Remove any margins that might push content down */
+.page {
+	padding-top: 0 !important;
+}
+
+/* Ensure proper flex layout */
+html {
+	height: 100%;
+}
+
+/* Ensure Starlight's page frame behaves correctly */
+.page-frame {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
+}
+
+/* Remove any unexpected top spacing */
+.page-frame > :first-child {
+	margin-top: 0;
+}
+
+/* Ensure main content area expands properly */
+.main-frame, .main-pane {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Footer positioning fix */
+/* Since footer is now inside content, we need to ensure it's styled properly */
+/* This assumes Starlight will handle positioning when we remove the wrapper */
+footer {
+	background-color: var(--sl-color-bg);
+	border-top: 1px solid var(--sl-color-gray-5);
+	margin-top: auto;
 }
 
 /* Theme toggle button specific styles */
@@ -175,4 +209,10 @@ main {
 
 .theme-option.flex {
 	display: flex !important;
+}
+
+/* Fix any CardGrid spacing issues that might affect FeatureCard alignment */
+.sl-card-grid {
+	position: relative;
+	z-index: 1;
 }

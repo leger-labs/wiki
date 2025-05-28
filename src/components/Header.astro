@@ -3,42 +3,41 @@ import type { Props } from '@astrojs/starlight/props';
 import Search from '@astrojs/starlight/components/Search.astro';
 ---
 
-<header class="custom-header">
-  <div class="header-container">
-    <div class="site-title">
-      <a href="/">
-        <span class="logo-emoji">🌍</span>
-        <span>Leger</span>
-      </a>
-    </div>
-    
-    <div class="header-center">
-      <Search {...Astro.props} />
-    </div>
-    
-    <div class="header-actions">
-      <theme-button class='my-auto'>
-        <button
-          class='theme-toggle rounded-full border-none cursor-pointer px-1 py-0 flex items-center bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors'
-          aria-label='Toggle Theme'
-        >
-          <span class='theme-option auto hidden'>
-            <span class='mx-1.5 my-1'>🌓</span>
-          </span>
-          <span class='theme-option light hidden'>
-            <span class='mx-1.5 my-1'>☀️</span>
-          </span>
-          <span class='theme-option dark hidden'>
-            <span class='mx-1.5 my-1'>🌙</span>
-          </span>
-        </button>
-      </theme-button>
-      <a href="https://app.leger.run" class="login-button">
-        Login
-      </a>
-    </div>
+<!-- Removed <header> wrapper since Starlight provides it -->
+<div class="header-container">
+  <div class="site-title">
+    <a href="/">
+      <span class="logo-emoji">🌍</span>
+      <span>Leger</span>
+    </a>
   </div>
-</header>
+  
+  <div class="header-center">
+    <Search {...Astro.props} />
+  </div>
+  
+  <div class="header-actions">
+    <theme-button class='my-auto'>
+      <button
+        class='theme-toggle rounded-full border-none cursor-pointer px-1 py-0 flex items-center bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors'
+        aria-label='Toggle Theme'
+      >
+        <span class='theme-option auto hidden'>
+          <span class='mx-1.5 my-1'>🌓</span>
+        </span>
+        <span class='theme-option light hidden'>
+          <span class='mx-1.5 my-1'>☀️</span>
+        </span>
+        <span class='theme-option dark hidden'>
+          <span class='mx-1.5 my-1'>🌙</span>
+        </span>
+      </button>
+    </theme-button>
+    <a href="https://app.leger.run" class="login-button">
+      Login
+    </a>
+  </div>
+</div>
 
 <script>
   type Theme = 'auto' | 'dark' | 'light';
@@ -121,14 +120,8 @@ import Search from '@astrojs/starlight/components/Search.astro';
 </script>
 
 <style>
-  .custom-header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background-color: var(--sl-color-bg);
-    border-bottom: 1px solid var(--sl-color-gray-5);
-  }
-
+  /* Removed .custom-header styles since we don't have that wrapper anymore */
+  
   .header-container {
     display: flex;
     align-items: center;
