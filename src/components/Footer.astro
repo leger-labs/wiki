@@ -4,32 +4,45 @@ import { Icon } from "@astrojs/starlight/components";
 ---
 
 <!-- Removed <footer> wrapper since Starlight should provide it -->
-<div class="footer-container">
-  <div class="footer-content">
-    <p class="copyright">© Leger Labs, Inc.</p>
-    
-    <nav class="footer-links">
-      <a href="/about">About</a>
-      <a href="/careers">Careers</a>
-      <a href="https://cal.com/leger" target="_blank" rel="noopener noreferrer">Schedule Call</a>
-      <a href="/changelog">Changelog</a>
-      <a href="/terms">Terms</a>
-      <a href="/privacy">Privacy</a>
-    </nav>
-    
-    <div class="social-links">
-      <a href="https://github.com/leger-labs" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-        <Icon name="github" />
-      </a>
-      <a href="https://linkedin.com/company/leger-labs" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-        <Icon name="linkedin" />
-      </a>
+<div class="footer-wrapper">
+  <hr class="footer-divider" />
+  <div class="footer-container">
+    <div class="footer-content">
+      <p class="copyright">© Leger Labs, Inc.</p>
+      
+      <nav class="footer-links">
+        <a href="/about">About</a>
+        <a href="/careers">Careers</a>
+        <a href="https://cal.com/leger" target="_blank" rel="noopener noreferrer">Schedule Call</a>
+        <a href="/changelog">Changelog</a>
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      
+      <div class="social-links">
+        <a href="https://github.com/leger-labs" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <Icon name="github" />
+        </a>
+        <a href="https://linkedin.com/company/leger-labs" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <Icon name="linkedin" />
+        </a>
+      </div>
     </div>
   </div>
 </div>
 
 <style>
   /* Removed .custom-footer styles since we don't have that wrapper anymore */
+  
+  .footer-wrapper {
+    width: 100%;
+  }
+  
+  .footer-divider {
+    margin: 0;
+    border: none;
+    border-top: 1px solid var(--sl-color-gray-5);
+  }
   
   .footer-container {
     padding: 1.5rem 1.5rem;
