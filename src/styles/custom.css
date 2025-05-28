@@ -7,8 +7,6 @@ body {
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
-	margin: 0;
-	padding: 0;
 }
 
 :root {
@@ -137,6 +135,37 @@ main {
 	flex: 1;
 }
 
+/* Starlight-specific positioning fixes using unlayered CSS */
+/* This will override Starlight's layered styles */
+
+/* Remove any unwanted top margin from the page */
+.page {
+	margin-top: 0 !important;
+}
+
+/* Ensure header sits at the very top */
+[data-has-hero] .header-full-width {
+	margin-top: calc(-1 * var(--sl-nav-height, 0px)) !important;
+}
+
+/* Ensure footer sits at the very bottom */
+.footer-full-width {
+	margin-bottom: 0 !important;
+}
+
+/* Remove default spacing that might interfere */
+.not-content {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+/* Override any Starlight container constraints for full-width elements */
+.header-full-width,
+.footer-full-width {
+	--sl-content-width: 100vw !important;
+	--sl-content-inline-start: 0 !important;
+}
+
 /* Theme toggle button specific styles */
 .theme-toggle {
 	display: flex;
@@ -158,62 +187,4 @@ main {
 
 .theme-option.flex {
 	display: flex !important;
-}
-
-/* Specific fixes for header and footer positioning */
-body > header:first-of-type {
-	margin-top: 0 !important;
-	position: sticky;
-	top: 0;
-}
-
-body > footer:last-of-type {
-	margin-bottom: 0 !important;
-	margin-top: auto;
-}
-
-/* Remove any default margins from html and body that could cause spacing */
-html {
-	margin: 0;
-	padding: 0;
-}
-
-/* Fix for Starlight's page structure - ensure no unwanted top/bottom margins */
-.page {
-	margin-top: 0 !important;
-	margin-bottom: 0 !important;
-}
-
-/* Ensure the app/page wrapper doesn't add unwanted spacing */
-#starlight__sidebar,
-.main-frame {
-	margin-top: 0 !important;
-	margin-bottom: 0 !important;
-}
-
-/* Additional Starlight-specific fixes */
-.sl-theme-main,
-.sl-container,
-#starlight__main {
-	margin-top: 0 !important;
-	padding-top: 0 !important;
-}
-
-/* Ensure body starts at top */
-body {
-	padding-top: 0 !important;
-}
-
-/* Target any potential wrapper divs */
-body > div:first-child {
-	margin-top: 0 !important;
-	padding-top: 0 !important;
-}
-
-/* Ensure footer sticks to bottom */
-body > div:last-child,
-body > footer:last-child,
-footer:last-of-type {
-	margin-bottom: 0 !important;
-	padding-bottom: 0 !important;
 }
