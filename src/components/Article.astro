@@ -133,23 +133,58 @@ const { title, date } = Astro.props;
     padding: 0;
   }
 
+  /* Remove all table borders */
   .article-body :global(table) {
-    width: 100%;
+    width: auto;
     border-collapse: collapse;
     margin-bottom: 1.75rem;
+    border: none;
   }
 
   .article-body :global(th),
   .article-body :global(td) {
-    border: 1px solid var(--sl-color-gray-5);
-    padding: 0.75rem 1rem;
+    border: none !important;
+    padding: 0.5rem 2rem 0.5rem 0;
     text-align: left;
   }
 
   .article-body :global(th) {
-    background: var(--sl-color-gray-6);
+    background: transparent;
     font-weight: 600;
     color: var(--sl-color-white);
+  }
+
+  .article-body :global(td) {
+    background: transparent;
+  }
+
+  /* Style the first column of tables differently */
+  .article-body :global(td:first-child) {
+    color: var(--sl-color-gray-3);
+    min-width: 120px;
+  }
+
+  /* Special styling for investor logos - targets p tags that contain only links with images */
+  .article-body :global(p:has(> a:first-child > img):has(> a:last-child > img)) {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 2rem 0;
+  }
+
+  .article-body :global(p:has(> a:first-child > img):has(> a:last-child > img) > a) {
+    flex: 0 0 calc(33.333% - 1.5rem);
+    max-width: calc(33.333% - 1.5rem);
+    text-decoration: none !important;
+  }
+
+  .article-body :global(p:has(> a:first-child > img):has(> a:last-child > img) > a > img) {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 80px;
+    margin: 0 !important;
   }
 
   @media (max-width: 50rem) {
@@ -167,6 +202,28 @@ const { title, date } = Astro.props;
 
     .article-body :global(h4) {
       font-size: 1.125rem;
+    }
+
+    /* Stack investor logos on mobile */
+    .article-body :global(p:has(> a:first-child > img):has(> a:last-child > img)) {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .article-body :global(p:has(> a:first-child > img):has(> a:last-child > img) > a) {
+      flex: 0 0 auto;
+      max-width: 250px;
+      width: 100%;
+    }
+
+    /* Adjust table padding on mobile */
+    .article-body :global(table) {
+      width: 100%;
+    }
+    
+    .article-body :global(th),
+    .article-body :global(td) {
+      padding: 0.5rem 1rem 0.5rem 0;
     }
   }
 </style>
