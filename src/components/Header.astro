@@ -7,8 +7,9 @@ import Search from '@astrojs/starlight/components/Search.astro';
 <div class="header-container">
   <div class="site-title">
     <a href="/">
-      <img src="/logo-white.svg" alt="Leger" class="logo logo-white" />
-      <img src="/logo-black.svg" alt="Leger" class="logo logo-black" />
+      <span class="logo-emoji">🌍</span>
+      <img src="/leger-white.svg" alt="Leger" class="logo-text logo-white" />
+      <img src="/leger-black.svg" alt="Leger" class="logo-text logo-black" />
     </a>
   </div>
   
@@ -159,13 +160,19 @@ import Search from '@astrojs/starlight/components/Search.astro';
   .site-title a {
     display: flex;
     align-items: center;
+    gap: 0.5rem;
     text-decoration: none;
     height: 40px;
     position: relative;
   }
 
-  .logo {
-    height: 40px;
+  .logo-emoji {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .logo-text {
+    height: 28px;
     width: auto;
     transition: opacity 0.2s ease;
   }
@@ -177,8 +184,9 @@ import Search from '@astrojs/starlight/components/Search.astro';
   .logo-black {
     opacity: 0;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    left: calc(2.5rem + 0.5rem); /* emoji width + gap */
   }
 
   /* Theme-based logo switching */
@@ -248,8 +256,16 @@ import Search from '@astrojs/starlight/components/Search.astro';
       height: 32px;
     }
 
-    .logo {
-      height: 32px;
+    .logo-emoji {
+      font-size: 2rem;
+    }
+
+    .logo-text {
+      height: 22px;
+    }
+
+    .logo-black {
+      left: calc(2rem + 0.5rem); /* smaller emoji width + gap */
     }
   }
 </style>
