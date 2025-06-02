@@ -30,7 +30,7 @@ const { title, date } = Astro.props;
   }
 
   .article-content {
-    max-width: 42rem;
+    max-width: 65rem;
     width: 100%;
   }
 
@@ -71,6 +71,14 @@ const { title, date } = Astro.props;
     font-weight: 600;
     margin-top: 2.5rem;
     margin-bottom: 1.25rem;
+    color: var(--sl-color-white);
+  }
+
+  .article-body :global(h4) {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
     color: var(--sl-color-white);
   }
 
@@ -125,6 +133,25 @@ const { title, date } = Astro.props;
     padding: 0;
   }
 
+  .article-body :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.75rem;
+  }
+
+  .article-body :global(th),
+  .article-body :global(td) {
+    border: 1px solid var(--sl-color-gray-5);
+    padding: 0.75rem 1rem;
+    text-align: left;
+  }
+
+  .article-body :global(th) {
+    background: var(--sl-color-gray-6);
+    font-weight: 600;
+    color: var(--sl-color-white);
+  }
+
   @media (max-width: 50rem) {
     .article-title {
       font-size: 2.25rem;
@@ -136,6 +163,10 @@ const { title, date } = Astro.props;
     
     .article-body :global(h3) {
       font-size: 1.375rem;
+    }
+
+    .article-body :global(h4) {
+      font-size: 1.125rem;
     }
   }
 </style>
