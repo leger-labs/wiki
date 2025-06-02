@@ -1,14 +1,16 @@
 ---
 import type { Props } from '@astrojs/starlight/props';
 import Search from '@astrojs/starlight/components/Search.astro';
+import logoWhite from '../assets/logo-white.svg';
+import logoBlack from '../assets/logo-black.svg';
 ---
 
 <!-- Removed <header> wrapper since Starlight provides it -->
 <div class="header-container">
   <div class="site-title">
     <a href="/">
-      <span class="logo-emoji">🌍</span>
-      <span>Leger</span>
+      <img src={logoWhite} alt="Leger" class="logo logo-white" />
+      <img src={logoBlack} alt="Leger" class="logo logo-black" />
     </a>
   </div>
   
@@ -117,6 +119,27 @@ import Search from '@astrojs/starlight/components/Search.astro';
     }
   }
   customElements.define('theme-button', ThemeButton);
+
+  // Initialize theme and logo visibility on page load
+  const initializeTheme = () => {
+    const currentTheme = theme.getTheme();
+    const root = document.documentElement;
+    const isDark = 
+      currentTheme === 'dark' || 
+      (currentTheme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    
+    root.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  };
+
+  // Run on initial load
+  initializeTheme();
+  
+  // Listen for system theme changes when in auto mode
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (theme.getTheme() === 'auto') {
+      initializeTheme();
+    }
+  });
 </script>
 
 <style>
@@ -140,22 +163,35 @@ import Search from '@astrojs/starlight/components/Search.astro';
   .site-title a {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
     text-decoration: none;
-    font-size: 2rem;
-    font-weight: 400 !important;
-    color: var(--sl-color-white);
-    font-family: "Jost", sans-serif;
+    height: 40px;
+    position: relative;
   }
 
-  .logo-emoji {
-    font-size: 2.5rem;
-    line-height: 1;
+  .logo {
+    height: 40px;
+    width: auto;
+    transition: opacity 0.2s ease;
   }
 
-  .site-title span:last-child {
-    font-size: 2rem;
-    line-height: 1;
+  .logo-white {
+    opacity: 1;
+  }
+
+  .logo-black {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  /* Theme-based logo switching */
+  :global([data-theme="light"]) .logo-white {
+    opacity: 0;
+  }
+
+  :global([data-theme="light"]) .logo-black {
+    opacity: 1;
   }
 
   .header-center {
@@ -213,11 +249,11 @@ import Search from '@astrojs/starlight/components/Search.astro';
     }
 
     .site-title a {
-      font-size: 1.25rem;
+      height: 32px;
     }
 
-    .logo-emoji {
-      font-size: 1.5rem;
+    .logo {
+      height: 32px;
     }
   }
 </style>

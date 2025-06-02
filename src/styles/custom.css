@@ -222,3 +222,23 @@ footer {
 	position: relative;
 	z-index: 1;
 }
+
+/* ADD THIS NEW SECTION: Hide empty hero sections for About/Careers/Terms/Privacy pages */
+.hero:has(h1:empty, h1:not(:first-child)) {
+  display: none !important;
+}
+
+/* Alternative selector if the above doesn't work */
+.hero h1:empty {
+  display: none;
+}
+
+.hero:has(h1:empty) {
+  display: none !important;
+}
+
+/* Hide hero if it only contains empty title and tagline */
+[data-has-hero] .hero:has(h1[data-page-title=""]),
+[data-has-hero] .hero:has(h1:not([data-page-title])) {
+  display: none !important;
+}
