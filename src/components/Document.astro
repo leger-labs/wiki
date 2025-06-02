@@ -21,15 +21,13 @@ const { title } = Astro.props;
   .document-container {
     min-height: calc(100vh - 12rem);
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 4rem 2rem;
   }
 
   .document-content {
     max-width: 48rem;
     width: 100%;
-    text-align: center;
   }
 
   .document-title {
@@ -37,11 +35,13 @@ const { title } = Astro.props;
     font-weight: 900;
     margin-bottom: 3rem;
     color: var(--sl-color-white);
+    text-align: left;
   }
 
   .document-body {
     line-height: 1.7;
     color: var(--sl-color-gray-2);
+    text-align: left;
   }
 
   .document-body :global(h2) {
@@ -50,6 +50,7 @@ const { title } = Astro.props;
     margin-top: 3rem;
     margin-bottom: 1.5rem;
     color: var(--sl-color-white);
+    text-align: left;
   }
 
   .document-body :global(h3) {
@@ -58,10 +59,12 @@ const { title } = Astro.props;
     margin-top: 2rem;
     margin-bottom: 1rem;
     color: var(--sl-color-white);
+    text-align: left;
   }
 
   .document-body :global(p) {
     margin-bottom: 1.5rem;
+    text-align: left;
   }
 
   .document-body :global(a) {
@@ -77,9 +80,11 @@ const { title } = Astro.props;
   .document-body :global(ol) {
     margin-bottom: 1.5rem;
     padding-left: 2rem;
+    text-align: left;
   }
 
   .document-body :global(li) {
     margin-bottom: 0.5rem;
+    text-align: left;
   }
 </style>
