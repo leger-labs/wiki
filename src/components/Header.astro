@@ -173,24 +173,19 @@ import Search from '@astrojs/starlight/components/Search.astro';
   .logo-text {
     height: 19px;
     width: 47px;
-    transition: opacity 0.2s ease;
+    display: block;
   }
 
-  .logo-white {
-    opacity: 1;
-  }
-
+  /* Hide logos by default */
+  .logo-white,
   .logo-black {
-    opacity: 0;
+    display: none;
   }
 
-  /* Theme-based logo switching */
-  :global(html[data-theme="light"]) .logo-white {
-    opacity: 0 !important;
-  }
-
+  /* Show appropriate logo based on theme */
+  :global(html:not([data-theme="light"])) .logo-white,
   :global(html[data-theme="light"]) .logo-black {
-    opacity: 1 !important;
+    display: block;
   }
 
   .header-center {
