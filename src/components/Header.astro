@@ -167,13 +167,15 @@ import Search from '@astrojs/starlight/components/Search.astro';
   }
 
   .logo-emoji {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     line-height: 1;
+    display: flex;
+    align-items: center;
   }
 
   .logo-text {
-    height: 29px;
-    width: 48px;
+    height: 19px;
+    width: 47px;
     transition: opacity 0.2s ease;
   }
 
@@ -184,18 +186,25 @@ import Search from '@astrojs/starlight/components/Search.astro';
   .logo-black {
     opacity: 0;
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: calc(1.5rem + 0.5rem); /* emoji width + gap */
+    top: 0;
+    left: calc(1.4rem + 0.5rem); /* emoji width + gap */
   }
 
-  /* Theme-based logo switching */
-  :global([data-theme="light"]) .logo-white {
-    opacity: 0;
+  /* Theme-based logo switching - more specific selectors */
+  :global(html[data-theme="light"]) .logo-white {
+    opacity: 0 !important;
   }
 
-  :global([data-theme="light"]) .logo-black {
-    opacity: 1;
+  :global(html[data-theme="light"]) .logo-black {
+    opacity: 1 !important;
+  }
+
+  :global(html[data-theme="dark"]) .logo-white {
+    opacity: 1 !important;
+  }
+
+  :global(html[data-theme="dark"]) .logo-black {
+    opacity: 0 !important;
   }
 
   .header-center {
@@ -257,16 +266,16 @@ import Search from '@astrojs/starlight/components/Search.astro';
     }
 
     .logo-emoji {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
     }
 
     .logo-text {
-      height: 23px;
-      width: 38px;
+      height: 16px;
+      width: 39px;
     }
 
     .logo-black {
-      left: calc(1.25rem + 0.5rem); /* smaller emoji width + gap */
+      left: calc(1.2rem + 0.5rem); /* smaller emoji width + gap */
     }
   }
 </style>
