@@ -1,16 +1,14 @@
 ---
 import type { Props } from '@astrojs/starlight/props';
 import Search from '@astrojs/starlight/components/Search.astro';
-import logoWhite from '../assets/logo-white.svg';
-import logoBlack from '../assets/logo-black.svg';
 ---
 
 <!-- Removed <header> wrapper since Starlight provides it -->
 <div class="header-container">
   <div class="site-title">
     <a href="/">
-      <img src={logoWhite} alt="Leger" class="logo logo-white" />
-      <img src={logoBlack} alt="Leger" class="logo logo-black" />
+      <img src="/logo-white.svg" alt="Leger" class="logo logo-white" />
+      <img src="/logo-black.svg" alt="Leger" class="logo logo-black" />
     </a>
   </div>
   
@@ -143,8 +141,6 @@ import logoBlack from '../assets/logo-black.svg';
 </script>
 
 <style>
-  /* Removed .custom-header styles since we don't have that wrapper anymore */
-  
   .header-container {
     display: flex;
     align-items: center;
