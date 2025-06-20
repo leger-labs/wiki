@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import starlightSidebarTopics from "starlight-sidebar-topics";
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 
@@ -11,7 +12,43 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "Leger",
-      plugins: [],
+      plugins: [
+        starlightSidebarTopics([
+          {
+            label: "Documentation",
+            link: "/documentation/",
+            icon: "document",
+            items: [
+              {
+                label: "Getting Started",
+                autogenerate: { directory: "documentation" },
+              },
+            ],
+          },
+          {
+            label: "Features", 
+            link: "/features/",
+            icon: "star",
+            items: [
+              {
+                label: "Feature Guides",
+                autogenerate: { directory: "features" },
+              },
+            ],
+          },
+          {
+            label: "Enterprise",
+            link: "/enterprise/",
+            icon: "seti:lock", 
+            items: [
+              {
+                label: "Enterprise Features",
+                autogenerate: { directory: "enterprise" },
+              },
+            ],
+          },
+        ]),
+      ],
       sidebar: [],
       social: {
         github: "https://github.com/leger-labs",
