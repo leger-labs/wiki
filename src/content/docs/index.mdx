@@ -1,20 +1,21 @@
 ---
 title: Home
-description: Lorem ipsum dolor sit amet
+description: Deploy enterprise AI in 5 minutes, not 5 months
 editUrl: false
 template: splash
 hero:
-  title: Leger
-  tagline: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  title: One Chat Interface to Rule Them All
+  tagline: Deploy OpenWebUI with 350+ features in minutes. Cut AI costs by 80%. Keep your data.
   actions:
-    - text: Deploy
-      link: https://coming-soon.leger.run
-      icon: seti:svg
-      variant: minimal
+    - text: Deploy Now
+      link: https://app.leger.run
+      icon: rocket
+      variant: primary
 
-    - text: For Enterprise
-      link: https://cal.com/leger
+    - text: See Pricing
+      link: /pricing
       icon: right-arrow
+      variant: minimal
 ---
 
 import {
@@ -36,9 +37,10 @@ import HeroBackground from "../../components/HeroBackground.astro";
       <Icon class="inline" name="information" />
     </span>
   </h1>
-  <h1>What's That?</h1>
+  <h1>Stop Juggling 20+ AI Subscriptions</h1>
   <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Your team is paying for ChatGPT, Claude, Perplexity, and a dozen other AI tools. 
+    Replace them all with one platform that does more, costs less, and keeps your data private.
   </p>
 </div>
 
@@ -48,33 +50,44 @@ import HeroBackground from "../../components/HeroBackground.astro";
       <Icon class="inline" name="star" />
     </span>
   </h1>
-  <h1>Features</h1>
+  <h1>Enterprise AI Made Simple</h1>
 </div>
 
 <CardGrid stagger>
   <FeatureCard
-    title="Easy to Use"
-    body="Built for simplicity and ease. No unnecessary complexity, no tedious setup, and no shell scripts required!"
+    title="5-Minute Deployment"
+    body="Deploy a fully-featured AI platform faster than brewing coffee. No DevOps expertise required."
+    icon="rocket"
+    href="/features/quick-deploy"
   />
   <FeatureCard
-    title="Lots of Widgets"
-    body="Fabric offers an extensive collection of pre-made widgets, allowing you to get started swiftly and effortlessly!"
+    title="80% Cost Reduction"
+    body="Replace $3,000+/month in AI subscriptions with one $99 platform. Unlimited users included."
+    icon="seti:dollar"
+    href="/pricing"
   />
   <FeatureCard
-    title="Cross-Platform Compatibility"
-    body="Seamlessly compatible with both X11 and Wayland, Fabric also offers native support for Hyprland!"
+    title="Every AI Model"
+    body="Access GPT-4, Claude, Llama, and 100+ models through one interface. No vendor lock-in."
+    icon="puzzle"
+    href="/features/multi-model"
   />
   <FeatureCard
-    title="Endlessly Customizable"
-    body="As a Python package, Fabric provides infinite possibilities for customization—limited only by your creativity!"
+    title="Advanced RAG & Search"
+    body="Built-in web search, document intelligence, and knowledge bases that actually work."
+    icon="magnifier"
+    href="/features/rag"
   />
   <FeatureCard
-    title="Awesome Community"
-    body="Join our active and welcoming community on Discord, where you'll find support and collaboration opportunities!"
+    title="Complete Data Control"
+    body="Your models, your data, your infrastructure. SOC2, HIPAA, and GDPR compliant."
+    icon="seti:lock"
+    href="/enterprise/security"
   />
   <FeatureCard
-  title="Enhanced DevEX"
-  body="Fabric adopts an advanced typing system thus fewer bugs and better development experience!"
-/>
-
+    title="Jupyter + Voice + More"
+    body="Code execution, voice chat, image generation, and 350+ features ready to use."
+    icon="setting"
+    href="/features"
+  />
 </CardGrid>
