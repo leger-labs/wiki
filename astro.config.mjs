@@ -49,7 +49,6 @@ export default defineConfig({
           },
         ]),
       ],
-      sidebar: [],
       social: {
         github: "https://github.com/leger-labs",
         linkedin: "https://linkedin.com/company/leger-labs",
