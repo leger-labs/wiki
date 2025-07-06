@@ -7,9 +7,10 @@ export interface Props {
   title: string;
   body?: string;
   icon?: string;
+  href?: string;
 }
 
-const { icon, title, body } = Astro.props;
+const { icon, title, body, href } = Astro.props;
 ---
 
 <div class="feature-card">
