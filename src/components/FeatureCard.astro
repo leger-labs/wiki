@@ -24,22 +24,52 @@ const { icon, title, body, href } = Astro.props;
     tiltMaxAngleY={6}
     tiltReverse={true}
   >
-    <article
-      class="card flex flex-col flex-grow basis-auto self-stretch w-[100%] h-[100%] border border-solid rounded-lg m-0"
-    >
-      <h4 class="title font-bold gap-4 items-center">
-        <!-- @ts-ignore -->
-        {icon && <Icon name={icon} class="icon" size="1.333em" />}
-        <span set:html={title} />
-      </h4>
-      <div class="body m-0">
-        {body}
-      </div>
-    </article>
+    {href ? (
+      <a href={href} class="card-link">
+        <article
+          class="card flex flex-col flex-grow basis-auto self-stretch w-[100%] h-[100%] border border-solid rounded-lg m-0"
+        >
+          <h4 class="title font-bold gap-4 items-center">
+            <!-- @ts-ignore -->
+            {icon && <Icon name={icon} class="icon" size="1.333em" />}
+            <span set:html={title} />
+          </h4>
+          <div class="body m-0">
+            {body}
+          </div>
+        </article>
+      </a>
+    ) : (
+      <article
+        class="card flex flex-col flex-grow basis-auto self-stretch w-[100%] h-[100%] border border-solid rounded-lg m-0"
+      >
+        <h4 class="title font-bold gap-4 items-center">
+          <!-- @ts-ignore -->
+          {icon && <Icon name={icon} class="icon" size="1.333em" />}
+          <span set:html={title} />
+        </h4>
+        <div class="body m-0">
+          {body}
+        </div>
+      </article>
+    )}
   </Tilt>
 </div>
 
 <style>
+  /* Link wrapper for clickable cards */
+  .card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-link:hover {
+    text-decoration: none;
+  }
+
   /* Add positioning context fix */
   .feature-card {
     position: relative;
@@ -64,6 +94,13 @@ const { icon, title, body, href } = Astro.props;
     /* Use CSS custom properties for colors */
     --card-title-color: var(--sl-color-white);
     --card-body-color: var(--sl-color-gray-2);
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: var(--sl-color-accent);
   }
 
   .title {
